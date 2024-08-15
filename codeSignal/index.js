@@ -84,22 +84,22 @@ const commonCharacterCount = (s1, s2) => {
     let frequencyCharCounter2 = {};
     
     for (const char1 of s1) {
-        frequencyCharCounter1[char1] = (frequencyCharCounter1[char1] || 0) +1;
+      frequencyCharCounter1[char1] = (frequencyCharCounter1[char1] || 0) +1;
     }
     
     for (const char2 of s2) {
-        frequencyCharCounter2[char2] = (frequencyCharCounter2[char2] || 0) +1;
+      frequencyCharCounter2[char2] = (frequencyCharCounter2[char2] || 0) +1;
     }
     
     // console.log(frequencyCharCounter1, frequencyCharCounter2);
     
     let commonCount = 0;
     for (const char in frequencyCharCounter1) {
-        if (frequencyCharCounter2[char]) {
-            commonCount += Math.min(frequencyCharCounter1[char], frequencyCharCounter2[char]);
-        }
+      if (frequencyCharCounter2[char]) {
+        commonCount += Math.min(frequencyCharCounter1[char], frequencyCharCounter2[char]);
+      }
     }
-    return commonCount;
+  return commonCount;
 };
 
 module.exports = {
