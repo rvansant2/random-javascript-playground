@@ -2,6 +2,8 @@ const centuryFromYear = require('./index').centuryFromYear;
 const largestAdjacentProduct = require('./index').largestAdjacentProduct
 const consecutiveArray = require('./index').consecutiveArray;
 const commonCharacterCount = require('./index').commonCharacterCount;
+const sortByHeight = require('./index').sortByHeight;
+const reverseInParthenses =  require('./index').reverseInParthenses;
 
 // Tests for centuryFromYear
 test('centuryFromYear passed in 1905', () => {
@@ -74,4 +76,39 @@ test('commonCharacterCount passed in s1: "zzzz", s2: "zzzzzzz"', () => {
 
 test('commonCharacterCount passed in s1: "abca", s2: "xyzbac"', () => {
   expect(commonCharacterCount('abca', 'xyzbac')).toEqual(3);
+});
+
+// Tests for sortByHeight
+test('sortByHeight passed in a: [-1, 150, 190, 170, -1, -1, 160, 180]', () => {
+  expect(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])).toEqual([-1, 150, 160, 170, -1, -1, 180, 190]);
+});
+
+test('sortByHeight passed in a: [-1, -1, -1, -1, -1]', () => {
+  expect(sortByHeight([-1, -1, -1, -1, -1])).toEqual([-1, -1, -1, -1, -1]);
+});
+
+test('sortByHeight passed in a: [4, 2, 9, 11, 2, 16]', () => {
+  expect(sortByHeight([4, 2, 9, 11, 2, 16])).toEqual([2, 2, 4, 9, 11, 16]);
+});
+
+test('sortByHeight passed in a: [23, 54, -1, 43, 1, -1, -1, 77, -1, -1, -1, 3]', () => {
+  expect(sortByHeight([23, 54, -1, 43, 1, -1, -1, 77, -1, -1, -1, 3])).toEqual([1, 3, -1, 23, 43, -1, -1, 54, -1, -1, -1, 77]);
+});
+
+// Tests for reverseInParthenses
+
+test('reverseInParthenses passed in a: "(bar)"', () => {
+  expect(reverseInParthenses("(bar)")).toEqual('rab');
+});
+
+test('reverseInParthenses passed in a: "foo(bar)baz"', () => {
+  expect(reverseInParthenses("foo(bar)baz")).toEqual('foorabbaz');
+});
+
+test('reverseInParthenses passed in a: "foo(bar)baz(blim)"', () => {
+  expect(reverseInParthenses("foo(bar)baz(blim)")).toEqual('foorabbazmilb');
+});
+
+test('reverseInParthenses passed in a: "foo(bar(baz))blim"', () => {
+  expect(reverseInParthenses("foo(bar(baz))blim")).toEqual('foobazrabblim');
 });

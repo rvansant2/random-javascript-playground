@@ -102,9 +102,58 @@ const commonCharacterCount = (s1, s2) => {
   return commonCount;
 };
 
+/**
+ * Some people are standing in a row in a park. There are trees between them which cannot be moved. Your task is to rearrange the people by their heights in a non-descending order without moving the trees. People can be very tall!
+ * Example
+ * For a = [-1, 150, 190, 170, -1, -1, 160, 180], the output should be solution(a) = [-1, 150, 160, 170, -1, -1, 180, 190].
+ */
+
+const sortByHeight = (a) => {
+  // Filter and sort people in array 
+  const people = a.filter(height => height !== -1).sort((a, b) => a - b);
+  // console.log(`people: ${people}`);
+
+  // Initialize
+  let result = [];
+  let index = 0;
+  // Loop over array of values
+  for (let i = 0; i < a.length; i++) {
+    // Keep all -1 values in place
+    if (a[i] === -1) {
+      result.push(-1);
+    } else {
+      // Add people sorted people into result array
+      result.push(people[index]);
+      index++;
+    }
+  }
+  // console.log(`result: ${result}`);
+  // Return result
+  return result;
+}
+
+const reverseInParthenses = (inputString) => {
+  // Initialize
+  let regexp = /\(([^()]*)\)/g;
+  
+  // Keep replacing while there are parentheses in the string
+  while (regexp.test(inputString)) {
+    // Match the innermost parentheses and reverse the content
+    inputString = inputString.replace(regexp, (match, group) => {
+      // Return empty string if the group is empty, otherwise reverse the group
+      return group.length === 0 ? '' : group.split('').reverse().join('');
+    });
+  }
+  
+  // Return the final result after all parentheses are processed
+  return inputString;
+};
+
 module.exports = {
   centuryFromYear,
   largestAdjacentProduct,
   consecutiveArray,
   commonCharacterCount,
+  sortByHeight,
+  reverseInParthenses,
 };
